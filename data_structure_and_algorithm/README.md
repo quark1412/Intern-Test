@@ -29,7 +29,7 @@ sum[l, r] = prefixSum[r + 1] - prefixSum[l]
 #### 2. Loại 2 (Tổng/hiệu Xen kẽ)
 
 ```javascript
-// Tiền xử lý: O(n) - Xây dựng mảng tiền tố riêng cho chỉ số chẵn/lẻ
+// Tiền xử lý: O(n) - Xây dựng prefix sum array riêng cho chỉ số chẵn/lẻ
 prefixEven[i] = tổng các phần tử tại chỉ số chẵn từ 0 đến i-1
 prefixOdd[i] = tổng các phần tử tại chỉ số lẻ từ 0 đến i-1
 
@@ -40,9 +40,9 @@ ngược lại:
     kết quả = (tổng lẻ trong khoảng) - (tổng chẵn trong khoảng)
 ```
 
-### Chi tiết Triển khai
+### Triển khai
 
-**Cấu trúc Dữ liệu:**
+**Dữ liệu:**
 
 - `prefixSum[]`: Mảng tổng tiền tố cho truy vấn Loại 1
 - `prefixEven[]`: Tổng tiền tố các phần tử tại chỉ số chẵn

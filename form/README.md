@@ -1,69 +1,60 @@
-# React + TypeScript + Vite
+# Task 2: Form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Cấu trúc Dự án
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+form/
+├── src/
+│   ├── App.tsx         # Component form chính
+│   ├── main.tsx        # Entry point
+│   └── App.css         # Styles
+├── package.json        # React + Vite dependencies và configs
+├── package-lock.json
+└── README.md          # Tài liệu
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Mô tả
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Ứng dụng React form với validation để nhập liệu dữ liệu trạm xăng.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Tính năng:
+
+- Form nhập liệu với validation
+- Date picker cho chọn thời gian
+- Tính toán tự động doanh thu
+- Toast notifications
+- Interface responsive với Tailwind CSS
+
+### Công nghệ:
+
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **React Hook Form** - Form management
+- **Yup** - Schema validation
+- **React DatePicker** - Date selection
+- **React Hot Toast** - Notifications
+- **Tailwind CSS** - Styling
+
+## Cách Chạy
+
+### Cài đặt & Thực thi
+
+1. **Di chuyển đến thư mục dự án:**
+
+   ```bash
+   cd form
+   ```
+
+2. **Cài đặt deps:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Chạy chương trình:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Mở trình duyệt:** `http://localhost:5173`
