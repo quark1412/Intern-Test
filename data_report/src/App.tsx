@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "./App.css";
 import * as XLSX from "xlsx";
 
@@ -131,20 +131,24 @@ function App() {
     return null;
   };
 
-  const calculateTotal = () => {
+  const { filteredDataMemo, totalMemo, isValidTimeRange } = useMemo(() => {
     if (!startTime || !endTime) {
-      alert("Vui lòng nhập đầy đủ thời gian bắt đầu và kết thúc");
-      return;
+      return {
+        filteredDataMemo: [],
+        totalMemo: 0,
+        isValidTimeRange: false,
+      };
     }
 
     const startDate = parseTimeString(startTime);
     const endDate = parseTimeString(endTime);
 
     if (!startDate || !endDate) {
-      alert(
-        "Định dạng thời gian không hợp lệ. Vui lòng sử dụng format 24h (VD: 9, 18)"
-      );
-      return;
+      return {
+        filteredDataMemo: [],
+        totalMemo: 0,
+        isValidTimeRange: false,
+      };
     }
 
     const filtered = data.filter((item) => {
@@ -159,8 +163,28 @@ function App() {
       return sum + amount;
     }, 0);
 
-    setFilteredData(filtered);
-    setFilteredTotal(total);
+    return {
+      filteredDataMemo: filtered,
+      totalMemo: total,
+      isValidTimeRange: true,
+    };
+  }, [data, startTime, endTime]);
+
+  const calculateTotal = () => {
+    if (!startTime || !endTime) {
+      alert("Vui lòng nhập đầy đủ thời gian bắt đầu và kết thúc");
+      return;
+    }
+
+    if (!isValidTimeRange) {
+      alert(
+        "Định dạng thời gian không hợp lệ. Vui lòng sử dụng format 24h (VD: 9, 18)"
+      );
+      return;
+    }
+
+    setFilteredData(filteredDataMemo);
+    setFilteredTotal(totalMemo);
   };
 
   return (
