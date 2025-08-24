@@ -93,6 +93,7 @@ const submit = async (results) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log("Submission successful", response.data);
     return response.data;
   } catch (error) {
     throw error;
