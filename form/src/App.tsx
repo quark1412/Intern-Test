@@ -18,7 +18,20 @@ const schema = yup.object({
     .number()
     .typeError("Doanh thu phải là số")
     .min(0, "Doanh thu không được âm")
-    .required("Doanh thu là bắt buộc"),
+    .required("Doanh thu là bắt buộc")
+    .test(
+      "revenue-calculation",
+      "Doanh thu phải bằng số lượng x đơn giá (làm tròn đến nghìn)",
+      function (value) {
+        const { quantity, unitPrice } = this.parent;
+        if (quantity && unitPrice && value !== undefined) {
+          const expectedRevenue =
+            Math.round((quantity * unitPrice) / 1000) * 1000;
+          return value === expectedRevenue;
+        }
+        return true;
+      }
+    ),
   unitPrice: yup
     .number()
     .typeError("Đơn giá phải là số")
@@ -129,7 +142,7 @@ function App() {
 
             <div>
               <label className="block text-gray-700 text-sm font-medium mb-2">
-                Trụ *
+                Trụ
               </label>
               <Controller
                 name="column"
